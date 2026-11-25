@@ -1,0 +1,276 @@
+/* Palet warna soft (pastel) */
+:root {
+    --bg-1: #fdf2f8;
+    --bg-2: #e0f2fe;
+    --kalkulator: #f5f3ff;
+    --layar: #ffffff;
+    --teks: #5b5675;
+    --tombol: #ffffff;
+    --tombol-hover: #ede9fe;
+    --operator: #fde3c8;
+    --operator-teks: #b8641b;
+    --spesial: #fbcfe0;
+    --spesial-teks: #b83b6b;
+    --samadengan: #bfe8d4;
+    --samadengan-teks: #2f7a58;
+    --ilmiah: #cfe3fb;
+    --ilmiah-teks: #3a68a8;
+    --bayangan: rgba(140, 125, 190, 0.25);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--teks);
+}
+
+.container {
+    position: relative; /* acuan posisi panel riwayat */
+    display: flex;
+}
+
+.kalkulator {
+    background-color: var(--kalkulator);
+    padding: 22px;
+    border-radius: 24px;
+    width: 280px;
+    box-shadow: 0 12px 30px var(--bayangan);
+}
+
+/* Header dengan ikon riwayat */
+.header-kalkulator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.judul {
+    font-size: 15px;
+    font-weight: 600;
+    color: #7a6fb0;
+}
+
+.tombol-riwayat {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ede9fe;
+    color: #7a6fb0;
+    border-radius: 50%;
+}
+
+.tombol-riwayat.aktif {
+    background-color: #d9d0fa;
+    color: #5b4a9e;
+}
+
+.badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    border-radius: 9px;
+    background-color: var(--spesial);
+    color: var(--spesial-teks);
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 18px;
+    text-align: center;
+}
+
+#layar {
+    width: 100%;
+    height: 56px;
+    font-size: 26px;
+    text-align: right;
+    margin-bottom: 18px;
+    padding: 5px 14px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--layar);
+    color: var(--teks);
+    box-shadow: inset 0 2px 6px rgba(140, 125, 190, 0.18);
+}
+
+.tombol-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    height: 50px;
+    font-size: 18px;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 14px;
+    background: var(--tombol);
+    color: var(--teks);
+    box-shadow: 0 3px 6px rgba(140, 125, 190, 0.18);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+button:hover {
+    background-color: var(--tombol-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(140, 125, 190, 0.25);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(140, 125, 190, 0.2);
+}
+
+.tombol-operator {
+    background-color: var(--operator);
+    color: var(--operator-teks);
+    font-weight: bold;
+}
+
+.tombol-spesial {
+    background-color: var(--spesial);
+    color: var(--spesial-teks);
+    font-weight: bold;
+}
+
+.tombol-sama-dengan {
+    background-color: var(--samadengan);
+    color: var(--samadengan-teks);
+    font-weight: bold;
+    font-size: 24px;
+    grid-row: span 2;
+    height: 110px;
+}
+
+.tombol-nol {
+    grid-column: span 2;
+}
+
+.tombol-kurung {
+    height: 40px;
+}
+
+.tombol-geser {
+    background-color: #e4def7;
+    color: #6b5fb0;
+    font-size: 14px;
+}
+
+.tombol-geser:hover { background-color: #d5ccf3; }
+
+/* Tombol mode sudut (DEG / RAD) */
+.tombol-mode {
+    margin-left: auto;
+    margin-right: 8px;
+    width: 46px;
+    height: 28px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 14px;
+    background-color: #ede9fe;
+    color: #7a6fb0;
+}
+
+.tombol-mode:hover { background-color: #d9d0fa; }
+
+/* Layar: kursor terlihat, teks panjang bisa digeser (scroll) */
+#layar {
+    outline: none;
+    caret-color: #7a6fb0;
+    cursor: text;
+    overflow-x: auto;
+    text-overflow: clip;
+}
+
+.tombol-ilmiah {
+    background-color: var(--ilmiah);
+    color: var(--ilmiah-teks);
+    font-weight: bold;
+}
+
+.tombol-operator:hover { background-color: #fbd5ae; }
+.tombol-spesial:hover { background-color: #f8b8d0; }
+.tombol-sama-dengan:hover { background-color: #a6dfc2; }
+.tombol-ilmiah:hover { background-color: #b9d6f7; }
+.tombol-riwayat:hover { background-color: #d9d0fa; }
+
+/* Panel riwayat: muncul di samping kalkulator tanpa menggeser posisinya */
+.panel-riwayat {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 20px);
+    background: rgba(255, 255, 255, 0.92);
+    padding: 22px;
+    border-radius: 24px;
+    width: 210px;
+    min-height: 200px;
+    box-sizing: border-box;
+    box-shadow: 0 12px 30px var(--bayangan);
+    animation: munculPanel 0.2s ease;
+}
+
+.panel-riwayat[hidden] {
+    display: none;
+}
+
+@keyframes munculPanel {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.panel-riwayat h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #e4def7;
+    padding-bottom: 10px;
+    color: #7a6fb0;
+}
+
+#daftar-riwayat {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#daftar-riwayat:empty::after {
+    content: "Belum ada riwayat";
+    display: block;
+    font-size: 14px;
+    color: #a9a3c4;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#daftar-riwayat li {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    background-color: #f5f3ff;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+/* Layar kecil: panel tampil di bawah kalkulator */
+@media (max-width: 640px) {
+    body { height: auto; min-height: 100vh; padding: 20px 0; align-items: flex-start; }
+    .panel-riwayat {
+        position: static;
+        margin-top: 16px;
+        width: 100%;
+    }
+    .container { flex-direction: column; }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Ilmiah Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="kalkulator">
+            <!-- Header: judul + mode sudut + ikon riwayat -->
+            <div class="header-kalkulator">
+                <span class="judul">Kalkulator Ilmiah</span>
+                <button id="tombol-mode" class="tombol-mode" onclick="gantiMode()"
+                        title="Ganti satuan sudut: derajat (DEG) / radian (RAD)">DEG</button>
+                <button id="tombol-riwayat" class="tombol-riwayat" onclick="toggleRiwayat()"
+                        title="Lihat riwayat" aria-label="Lihat riwayat" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 3-6.7"/>
+                        <polyline points="3 4 3 9 8 9"/>
+                        <polyline points="12 7 12 12 15 14"/>
+                    </svg>
+                    <span id="badge-riwayat" class="badge" hidden>0</span>
+                </button>
+            </div>
+
+            <!-- readonly: tidak bisa diketik langsung, tapi kursor bisa digeser dan teks bisa di-scroll -->
+            <input type="text" id="layar" readonly autocomplete="off" spellcheck="false">
+            <div class="tombol-grid">
+                <!-- Ilmiah -->
+                <button onclick="hitungIlmiah('sin')" class="tombol-ilmiah">sin</button>
+                <button onclick="hitungIlmiah('cos')" class="tombol-ilmiah">cos</button>
+                <button onclick="hitungIlmiah('tan')" class="tombol-ilmiah">tan</button>
+                <button onclick="hitungIlmiah('sqrt')" class="tombol-ilmiah">√</button>
+
+                <!-- Kurung & geser kursor -->
+                <button onclick="masukkanNilai('(')" class="tombol-kurung">(</button>
+                <button onclick="masukkanNilai(')')" class="tombol-kurung">)</button>
+                <button onclick="geserKursor(-1)" class="tombol-kurung tombol-geser" title="Geser kursor ke kiri">◀</button>
+                <button onclick="geserKursor(1)" class="tombol-kurung tombol-geser" title="Geser kursor ke kanan">▶</button>
+
+                <!-- Dasar -->
+                <button onclick="bersihkanLayar()" class="tombol-spesial">C</button>
+                <button onclick="masukkanNilai('/')" class="tombol-operator">/</button>
+                <button onclick="masukkanNilai('*')" class="tombol-operator">x</button>
+                <button onclick="hapusSatu()" class="tombol-spesial">DEL</button>
+
+                <button onclick="masukkanNilai('7')">7</button>
+                <button onclick="masukkanNilai('8')">8</button>
+                <button onclick="masukkanNilai('9')">9</button>
+                <button onclick="masukkanNilai('-')" class="tombol-operator">-</button>
+
+                <button onclick="masukkanNilai('4')">4</button>
+                <button onclick="masukkanNilai('5')">5</button>
+                <button onclick="masukkanNilai('6')">6</button>
+                <button onclick="masukkanNilai('+')" class="tombol-operator">+</button>
+
+                <button onclick="masukkanNilai('1')">1</button>
+                <button onclick="masukkanNilai('2')">2</button>
+                <button onclick="masukkanNilai('3')">3</button>
+                <button onclick="hitungHasil()" class="tombol-sama-dengan">=</button>
+
+                <button onclick="masukkanNilai('0')" class="tombol-nol">0</button>
+                <button onclick="masukkanNilai('.')">.</button>
+            </div>
+        </div>
+
+        <!-- Panel riwayat: tersembunyi, muncul saat ikon diklik -->
+        <div class="panel-riwayat" id="panel-riwayat" hidden>
+            <h3>Riwayat (Max 5)</h3>
+            <ul id="daftar-riwayat"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
